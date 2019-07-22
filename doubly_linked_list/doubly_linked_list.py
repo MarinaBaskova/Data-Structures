@@ -55,12 +55,11 @@ class DoublyLinkedList:
       self.head = new_list_node
       self.tail = new_list_node
     else:
-        self.tail.next = new_list_node
-        new_list_node.prev = self.tail
-        self.tail = new_list_node
+        self.tail.insert_after(value)
+        self.tail = self.tail.next
 
     self.length += 1
-    return new_list_node     
+    # return new_list_node     
 
   def remove_from_tail(self):
     pass
