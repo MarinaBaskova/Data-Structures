@@ -50,7 +50,17 @@ class DoublyLinkedList:
     pass
 
   def add_to_tail(self, value):
-    pass
+    new_list_node = ListNode(value)
+    if (self.length == 0):
+      self.head = new_list_node
+      self.tail = new_list_node
+    else:
+        self.tail.next = new_list_node
+        new_list_node.prev = self.tail
+        self.tail = new_list_node
+
+    self.length += 1
+    return new_list_node     
 
   def remove_from_tail(self):
     pass
@@ -66,3 +76,11 @@ class DoublyLinkedList:
     
   def get_max(self):
     pass
+
+
+list = DoublyLinkedList()
+
+list.add_to_tail(10)
+list.add_to_tail(11)
+list.add_to_tail(12)
+print(list)
