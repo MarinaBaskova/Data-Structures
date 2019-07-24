@@ -9,8 +9,10 @@ class TextBuffer:
         # check if an init string is provided
         # if so, put the contents of the init string in self.contents
         if init:
-            for character in init:
-                self.contents.add_to_tail(character)
+            # for character in init:
+            #     self.contents.add_to_tail(character)
+            # to dry the code use existing method
+            self.append(init)
 
     def __str__(self):
         # needs to return a string to print
@@ -32,6 +34,8 @@ class TextBuffer:
         # when you do a[::-1] , it starts from the end, towards the first, taking each element. So it reverses a.
         for character in string_to_add[::-1]:
             self.contents.add_to_head(character)
+
+    # how many char we want to remove from begining or from the end
 
     def delete_front(self, chars_to_remove):  # number of characters
         while chars_to_remove:
@@ -55,23 +59,27 @@ class TextBuffer:
 # text1.join(text2)
 
     def join(self, other_buffer):
+        # check if other buffer is empty
+        if(other_buffer.contents.length == 0):
+            print("Error: Other buffer is empty")
+            return
         # we might want to check that other_buffer is indeed a text buffer
 
-        # if isinstance(other_buffer, TextBuffer):
+        if isinstance(other_buffer, TextBuffer):
 
-        # set self list tail's next node to be the head of the other buffer
-        self.contents.tail.next = other_buffer.contents.head
-        # set other_buffer head's prev node to be the tail of this buffer
-        other_buffer.contents.head.prev = self.contents.tail
-        # The head of the concatenated buffer will be the head of this buffer
-        other_buffer.contents.head = self.contents.head
-        # The tail of the concatenated buffer will be the tail of the other buffer
-        self.contents.tail = other_buffer.contents.tail
+             # set self list tail's next node to be the head of the other buffer
+            self.contents.tail.next = other_buffer.contents.head
+            # set other_buffer head's prev node to be the tail of this buffer
+            other_buffer.contents.head.prev = self.contents.tail
+            # The head of the concatenated buffer will be the head of this buffer
+            # other_buffer.contents.head = self.contents.head
+            # The tail of the concatenated buffer will be the tail of the other buffer
+            self.contents.tail = other_buffer.contents.tail
 
-        self.contents.length = self.contents.length + other_buffer.contents.length
+            self.contents.length = self.contents.length + other_buffer.contents.length
 
-        # else:
-        #     return None
+        else:
+            return None
 
     # if we get fed(joining, what passed in funct) a string instead of a text buffer instance,
     # initialize a new text buffer with this string and then
