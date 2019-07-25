@@ -41,10 +41,8 @@ class BinarySearchTree:
 
     def for_each(self, cb):
         cb(self.value)
-        if self.left and self.right:
+        # DFS
+        if self.left:
             self.left.for_each(cb)
-            self.right.for_each(cb)
-        elif self.left:
-            self.left.for_each(cb)
-        elif self.right:
+        if self.right:
             self.right.for_each(cb)
