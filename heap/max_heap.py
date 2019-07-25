@@ -10,7 +10,7 @@ class Heap:
         # Delete the node that contains the value you want deleted in the heap
         # Replace the deleted node with the farthest right node.
         deleted_node = self.storage[0]
-        self.storage[0] = self.storage[-1]
+        self.storage[0], self.storage[-1] = self.storage[-1], self.storage[0]
         self.storage.pop()
         self._sift_down(0)
         return deleted_node
